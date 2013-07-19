@@ -62,6 +62,7 @@ module Rack::Attack
         # add a parameter passed in to signify a throttle
         request = Rack::Request.new(env)
         request[:throttled] = 'yes'
+        puts '#####$$$$$$$$$$$ throttling in middleware  00000000'
         @app.call(env)
       else
         tracked?(req)
