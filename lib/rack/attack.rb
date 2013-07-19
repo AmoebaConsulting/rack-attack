@@ -60,7 +60,12 @@ module Rack::Attack
         # throttled_response[env]
 
         # add a parameter passed in to signify a throttle
-        Rack::Request.new(env)["throttled"] = 'yes'
+        request = Rack::Request.new(env)
+        request.update_param :throttled, 'yes'
+
+        # this doesn't work?
+        #request[:throttled] = 'yes'
+
         @app.call(env)
       else
         tracked?(req)
