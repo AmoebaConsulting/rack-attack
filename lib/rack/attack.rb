@@ -61,10 +61,10 @@ module Rack::Attack
 
         # add a parameter passed in to signify a throttle
         request = Rack::Request.new(env)
-        request.update_param :throttled, 'yes'
 
-        # this doesn't work?
+        # this doesn't work. not sure why
         #request[:throttled] = 'yes'
+        request.update_param :throttled, 'yes'
 
         @app.call(env)
       else
